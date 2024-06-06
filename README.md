@@ -69,6 +69,7 @@ This documentation provides a comprehensive guide to the Blog Application API bu
 ![Screenshot_88](https://github.com/OmarHesham66/BlogApplication/assets/62832339/de59e3ab-d7ea-4bb4-b320-7c8e9ab0584b)
 
 --- Example Response ---
+
 ![Screenshot_89](https://github.com/OmarHesham66/BlogApplication/assets/62832339/ce5afcb4-a806-4021-b43d-5b455ec90f59)
 
 
@@ -110,6 +111,7 @@ This documentation provides a comprehensive guide to the Blog Application API bu
 ![Screenshot_99](https://github.com/OmarHesham66/BlogApplication/assets/62832339/cd09fd07-c0d4-4b18-bbc1-49e5ea6483b5)
 
 --- Example Request as php ---
+![Screenshot_99](https://github.com/OmarHesham66/BlogApplication/assets/62832339/cd09fd07-c0d4-4b18-bbc1-49e5ea6483b5)
 
 --- Example Response ---
 
