@@ -5,14 +5,6 @@
 This documentation provides a comprehensive guide to the Blog Application API built with Laravel. The API includes endpoints for user authentication, CRUD operations for posts and categories, logging of post operations, and comprehensive unit tests.
 
 
-## Key Features
-
-- Supplier and customer management.
-- Product categorization and unit tracking.
-- Creation of sales invoices and purchase operations.
-- Daily reports for operations and inventory status.
-- Intuitive and user-friendly interface.
-
 ## Getting Started
 
 1. Install project dependencies using Composer:
