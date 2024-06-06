@@ -52,69 +52,540 @@ This documentation provides a comprehensive guide to the Blog Application API bu
 **************Apis***********
 
 --- Login --- 
-![Screenshot_84](https://github.com/OmarHesham66/BlogApplication/assets/62832339/cb98bf68-fa1f-4c93-97f7-1f1d32c5850c)
+  ```bash
+   http://127.0.0.1:8000/api/login
+   ```
 
 --- Example Request as php ---
-![Screenshot_85](https://github.com/OmarHesham66/BlogApplication/assets/62832339/c9762fb7-ae8d-4334-9fa8-296dc49d47f3)
+```bash
+<?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$options = [
+  'multipart' => [
+    [
+      'name' => 'email',
+      'contents' => 'o@o.com'
+    ],
+    [
+      'name' => 'password',
+      'contents' => '123456'
+    ]
+]];
+$request = new Request('POST', 'http://127.0.0.1:8000/api/login', $headers);
+$res = $client->sendAsync($request, $options)->wait();
+echo $res->getBody();
+```
 
 --- Example Response --- 
-![Screenshot_86](https://github.com/OmarHesham66/BlogApplication/assets/62832339/f4854f5e-a580-4449-a386-fd25253ececb)
+   ```bash
+   {
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzE3NjgxNjg1LCJleHAiOjE3MTc2ODUyODUsIm5iZiI6MTcxNzY4MTY4NSwianRpIjoiMWN0a1c4Vmo3eENlWUtrbyIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.iZjWCdkePhMXf5-Y8xjsX0g47ZgdXQOr_-MwPdgkT0A",
+  "user": {
+    "id": 1,
+    "name": "Omar Hesham",
+    "email": "o@o.com",
+    "created_at": "2024-06-04T14:57:52.000000Z",
+    "updated_at": "2024-06-04T14:57:52.000000Z"
+  },
+  "code": 200,
+  "message": "Login successful"
+}
+   ```
 
 
 
 --- Register --- 
-![Screenshot_87](https://github.com/OmarHesham66/BlogApplication/assets/62832339/145257ad-0b65-4149-a503-dc4c301f7549)
+   ```bash
+  http://127.0.0.1:8000/api/register
+   ```
 
 --- Example Request as php ---
-![Screenshot_88](https://github.com/OmarHesham66/BlogApplication/assets/62832339/de59e3ab-d7ea-4bb4-b320-7c8e9ab0584b)
+   ```bash
+   <?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$options = [
+  'multipart' => [
+    [
+      'name' => 'email',
+      'contents' => 'ahmed@ahmed.com'
+    ],
+    [
+      'name' => 'name',
+      'contents' => 'ahmed'
+    ],
+    [
+      'name' => 'password',
+      'contents' => '123456789'
+    ],
+    [
+      'name' => 'password_confirmation',
+      'contents' => '123456789'
+    ]
+]];
+$request = new Request('POST', 'http://127.0.0.1:8000/api/register', $headers);
+$res = $client->sendAsync($request, $options)->wait();
+echo $res->getBody();
+
+   ```
 
 --- Example Response ---
 
-![Screenshot_89](https://github.com/OmarHesham66/BlogApplication/assets/62832339/ce5afcb4-a806-4021-b43d-5b455ec90f59)
+   ```bash
+   {
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3JlZ2lzdGVyIiwiaWF0IjoxNzE3NjkwMjMwLCJleHAiOjE3MTc2OTM4MzAsIm5iZiI6MTcxNzY5MDIzMCwianRpIjoiUzlwWjhPbkk2S2l2TjB3eiIsInN1YiI6IjciLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-pNyINvyVK0PXgOVQmtAR4j82uH4UCnKpDNrXLMkvCE",
+  "user": {
+    "name": "ahmed",
+    "email": "ahmed@ahmed.com",
+    "updated_at": "2024-06-06T16:10:30.000000Z",
+    "created_at": "2024-06-06T16:10:30.000000Z",
+    "id": 7
+  },
+  "code": 200,
+  "message": "Register successful"
+}
+   ```
 
 
 
 --- Refresh Token --- 
-![Screenshot_90](https://github.com/OmarHesham66/BlogApplication/assets/62832339/9a18617b-f883-4d7c-8ce4-0b7e381444df)
+   ```bash
+   http://127.0.0.1:8000/api/refresh
+   ```
 
 --- Example Request as php ---
-![Screenshot_91](https://github.com/OmarHesham66/BlogApplication/assets/62832339/d8241773-3db8-4b24-b778-80414cf8d972)
+   ```bash
+   <?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$request = new Request('GET', 'http://127.0.0.1:8000/api/refresh', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+
+   ```
 
 --- Example Response ---
-![Screenshot_92](https://github.com/OmarHesham66/BlogApplication/assets/62832339/da72b40f-9092-4a92-acc8-abb1269df319)
+   ```bash
+   {
+  "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3JlZnJlc2giLCJpYXQiOjE3MTc2OTAyNTMsImV4cCI6MTcxNzY5Mzg2NSwibmJmIjoxNzE3NjkwMjY1LCJqdGkiOiI1TloyNE9LU0h2aEQ0ZzNVIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.xWKhUDrvz1wVZqyl0qNGY6qNmfGbp8imy7hbSTAbhic",
+  "code": 200,
+  "message": "Refresh token successful"
+}
+   ```
 
 
 --- Logout --- 
-![Screenshot_93](https://github.com/OmarHesham66/BlogApplication/assets/62832339/5a55565e-1f1c-46cc-a9d6-848d03d4b49b)
+   ```bash
+   http://127.0.0.1:8000/api/logout
+   ```
 
 --- Example Request as php ---
-![Screenshot_94](https://github.com/OmarHesham66/BlogApplication/assets/62832339/7674bcb2-7817-454c-ba78-28c35e3703ea)
+   ```bash
+   <?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$request = new Request('POST', 'http://127.0.0.1:8000/api/logout', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+
+   ```
 
 --- Example Response ---
 
-![Screenshot_95](https://github.com/OmarHesham66/BlogApplication/assets/62832339/8085801f-2f71-4e46-9c77-4ae620bca6db)
+   ```bash
+   {
+  "code": 200,
+  "message": "Logout successful"
+}
+   ```
 
 
 
 --- Get All Posts --- 
-![Screenshot_96](https://github.com/OmarHesham66/BlogApplication/assets/62832339/9e80927a-4b8e-4da2-abdc-dbb3fa716a0b)
+   ```bash
+   [php artisan serve](http://127.0.0.1:8000/api/posts)
+   ```
 
 --- Example Request as php ---
-![Screenshot_97](https://github.com/OmarHesham66/BlogApplication/assets/62832339/2e608af4-61d6-43c9-9989-47b4b034e094)
+   ```bash
+   <?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$request = new Request('GET', 'http://127.0.0.1:8000/api/posts', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+
+   ```
 
 --- Example Response ---
-![Screenshot_98](https://github.com/OmarHesham66/BlogApplication/assets/62832339/890bc20a-b4b5-4f55-94ee-7ab042b082cf)
+   ```bash
+   {
+  "code": 200,
+  "message": "Fetch Posts Successfully",
+  "data": [
+    {
+      "id": 1,
+      "title": "Prof.",
+      "content": "Then came a little now and then, if I must, I must,' the King put on his flappers, '--Mystery, ancient and modern, with Seaography: then Drawling--the Drawling-master was an immense length of neck.",
+      "media": "https://via.placeholder.com/640x480.png/00ffee?text=sed",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 1,
+        "name": "Omar Hesham",
+        "email": "o@o.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 2,
+      "title": "Prof.",
+      "content": "However, I've got to the Queen, stamping on the breeze that followed them, the melancholy words:-- 'Soo--oop of the trees had a consultation about this, and Alice was thoroughly puzzled. 'Does the.",
+      "media": "https://via.placeholder.com/640x480.png/00aa44?text=quos",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 1,
+        "name": "Omar Hesham",
+        "email": "o@o.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 3,
+      "title": "Dr.",
+      "content": "They all made a rush at the frontispiece if you please! \"William the Conqueror, whose cause was favoured by the whole pack of cards!' At this moment the door of the Queen's ears--' the Rabbit.",
+      "media": "https://via.placeholder.com/640x480.png/0088cc?text=et",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 1,
+        "name": "Omar Hesham",
+        "email": "o@o.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 4,
+      "title": "Mr.",
+      "content": "This sounded promising, certainly: Alice turned and came back again. 'Keep your temper,' said the Duchess. An invitation for the White Rabbit put on her spectacles, and began bowing to the Cheshire.",
+      "media": "https://via.placeholder.com/640x480.png/0077bb?text=dolorum",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 2,
+        "name": "Tillman Carroll",
+        "email": "neoma.wolff@example.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 5,
+      "title": "Mr.",
+      "content": "Majesty,' he began. 'You're a very good height indeed!' said the Dormouse, without considering at all like the name: however, it only grinned a little faster?\" said a sleepy voice behind her.",
+      "media": "https://via.placeholder.com/640x480.png/00cccc?text=explicabo",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 2,
+        "name": "Tillman Carroll",
+        "email": "neoma.wolff@example.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 6,
+      "title": "Dr.",
+      "content": "Poor Alice! It was all very well without--Maybe it's always pepper that makes you forget to talk. I can't see you?' She was looking about for it, she found to be afraid of them!' 'And who are.",
+      "media": "https://via.placeholder.com/640x480.png/00ee66?text=sed",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 2,
+        "name": "Tillman Carroll",
+        "email": "neoma.wolff@example.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 7,
+      "title": "Dr.",
+      "content": "And so it was all very well without--Maybe it's always pepper that had a little house in it about four inches deep and reaching half down the chimney, and said to herself, and shouted out, 'You'd.",
+      "media": "https://via.placeholder.com/640x480.png/003333?text=beatae",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 3,
+        "name": "Ted Terry PhD",
+        "email": "mraz.wilfred@example.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 8,
+      "title": "Dr.",
+      "content": "And welcome little fishes in With gently smiling jaws!' 'I'm sure I'm not the right house, because the chimneys were shaped like the tone of delight, and rushed at the moment, 'My dear! I shall have.",
+      "media": "https://via.placeholder.com/640x480.png/001155?text=ut",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 3,
+        "name": "Ted Terry PhD",
+        "email": "mraz.wilfred@example.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 9,
+      "title": "Prof.",
+      "content": "Down, down, down. Would the fall was over. However, when they passed too close, and waving their forepaws to mark the time, while the Mock Turtle, 'Drive on, old fellow! Don't be all day about it!'.",
+      "media": "https://via.placeholder.com/640x480.png/000044?text=modi",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 3,
+        "name": "Ted Terry PhD",
+        "email": "mraz.wilfred@example.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 10,
+      "title": "Prof.",
+      "content": "Alice, a good deal frightened by this very sudden change, but she felt a violent shake at the thought that she was now about a foot high: then she looked at Two. Two began in a low voice. 'Not at.",
+      "media": "https://via.placeholder.com/640x480.png/00bb44?text=non",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 4,
+        "name": "Keaton Jaskolski",
+        "email": "pink.gorczany@example.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 11,
+      "title": "Mrs.",
+      "content": "Wonderland, though she knew that it was over at last, and managed to put it right; 'not that it was only too glad to do THAT in a wondering tone. 'Why, what a Mock Turtle angrily: 'really you are.",
+      "media": "https://via.placeholder.com/640x480.png/00eeff?text=sunt",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 4,
+        "name": "Keaton Jaskolski",
+        "email": "pink.gorczany@example.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 12,
+      "title": "Prof.",
+      "content": "Everything is so out-of-the-way down here, that I should like to drop the jar for fear of killing somebody, so managed to put down yet, before the officer could get to the Queen, 'and take this.",
+      "media": "https://via.placeholder.com/640x480.png/007733?text=accusantium",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 4,
+        "name": "Keaton Jaskolski",
+        "email": "pink.gorczany@example.com"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 13,
+      "title": "Mrs.",
+      "content": "Wonderland, though she felt sure she would feel very queer to ME.' 'You!' said the March Hare will be When they take us up and beg for its dinner, and all the things being alive; for instance.",
+      "media": "https://via.placeholder.com/640x480.png/002200?text=sit",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 5,
+        "name": "Dallas Graham",
+        "email": "raynor.octavia@example.org"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 14,
+      "title": "Prof.",
+      "content": "I believe.' 'Boots and shoes under the door; so either way I'll get into her eyes; and once she remembered trying to fix on one, the cook took the hookah out of the room again, no wonder she felt.",
+      "media": "https://via.placeholder.com/640x480.png/0022bb?text=fugiat",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 5,
+        "name": "Dallas Graham",
+        "email": "raynor.octavia@example.org"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 15,
+      "title": "Prof.",
+      "content": "Hatter asked triumphantly. Alice did not dare to laugh; and, as they would die. 'The trial cannot proceed,' said the Pigeon; 'but I haven't had a VERY turn-up nose, much more like a telescope! I.",
+      "media": "https://via.placeholder.com/640x480.png/007755?text=perferendis",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 5,
+        "name": "Dallas Graham",
+        "email": "raynor.octavia@example.org"
+      },
+      "category": {
+        "name": "Important Category",
+        "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+      }
+    },
+    {
+      "id": 17,
+      "title": "post 19",
+      "content": "this is post",
+      "media": "http://127.0.0.1:8000/PostsMedia/php4B54.tmp(2024-06-04 15:44:10)png",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 1,
+        "name": "Omar Hesham",
+        "email": "o@o.com"
+      },
+      "category": null
+    },
+    {
+      "id": 18,
+      "title": "post 2",
+      "content": "this is post 2",
+      "media": "http://127.0.0.1:8000/PostsMedia/2024-06-04 15:47:36_php6E42.tmp",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 1,
+        "name": "Omar Hesham",
+        "email": "o@o.com"
+      },
+      "category": null
+    },
+    {
+      "id": 19,
+      "title": "post 3",
+      "content": "this is post 3",
+      "media": "http://127.0.0.1:8000/PostsMedia/2024-06-04 15:48:19_Screenshot_11.png",
+      "created_at": "2024-06-04",
+      "author": {
+        "id": 1,
+        "name": "Omar Hesham",
+        "email": "o@o.com"
+      },
+      "category": null
+    },
+    {
+      "id": 22,
+      "title": "post 6",
+      "content": "this is post 6",
+      "media": "http://127.0.0.1:8000/PostsMedia/130648_Screenshot_25.png",
+      "created_at": "2024-06-06",
+      "author": {
+        "id": 1,
+        "name": "Omar Hesham",
+        "email": "o@o.com"
+      },
+      "category": null
+    },
+    {
+      "id": 23,
+      "title": "post 7",
+      "content": "this is post 7",
+      "media": "http://127.0.0.1:8000/PostsMedia/130651_Screenshot_25.png",
+      "created_at": "2024-06-06",
+      "author": {
+        "id": 1,
+        "name": "Omar Hesham",
+        "email": "o@o.com"
+      },
+      "category": null
+    }
+  ]
+}
+   ```
 
 
 
 --- Find Post By ID --- 
-![Screenshot_99](https://github.com/OmarHesham66/BlogApplication/assets/62832339/cd09fd07-c0d4-4b18-bbc1-49e5ea6483b5)
+   ```bash
+   [php artisan serve](http://127.0.0.1:8000/api/posts/70)
+   ```
 
 --- Example Request as php ---
-![Screenshot_99](https://github.com/OmarHesham66/BlogApplication/assets/62832339/cd09fd07-c0d4-4b18-bbc1-49e5ea6483b5)
+   ```bash
+   <?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$request = new Request('GET', 'http://127.0.0.1:8000/api/posts/1', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+
+   ```
 
 --- Example Response ---
-
+```bash
+{
+  "code": 200,
+  "message": "Fetch Post Successfully",
+  "data": {
+    "id": 1,
+    "title": "Prof.",
+    "content": "Then came a little now and then, if I must, I must,' the King put on his flappers, '--Mystery, ancient and modern, with Seaography: then Drawling--the Drawling-master was an immense length of neck.",
+    "media": "https://via.placeholder.com/640x480.png/00ffee?text=sed",
+    "created_at": "2024-06-04",
+    "author": {
+      "id": 1,
+      "name": "Omar Hesham",
+      "email": "o@o.com"
+    },
+    "category": {
+      "name": "Important Category",
+      "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+    }
+  }
+}
+```
 
 
 
