@@ -51,6 +51,11 @@ This documentation provides a comprehensive guide to the Blog Application API bu
 
 **************Apis***********
 
+
+1- Url For Documentation => https://documenter.getpostman.com/view/29073571/2sA3XJjjJK
+
+2 - Preview For Apis 
+
 --- Login --- 
   ```bash
    http://127.0.0.1:8000/api/login
@@ -901,3 +906,61 @@ echo $res->getBody();
   "data": []
 }
    ```
+# Test Cases
+
+## Authentication Tests
+
+### Test User Registration:
+
+- Test valid registration
+- Test registration with missing fields
+
+### Test User Login:
+
+- Test valid login
+- Test login with incorrect password
+- Test login with non-existent email
+
+## Post Tests
+
+### Test Post Creation:
+
+- Test valid post creation and save log for this post
+- Test post creation with missing fields
+
+### Test Post Retrieval:
+
+- Test retrieval of all posts
+- Test retrieval of single post by ID
+
+### Test Post Update:
+
+- Test valid post update and save log for this post
+- Test post update with missing fields
+
+### Test Post Deletion:
+
+- Test valid post deletion
+- Test deletion of non-existent post
+
+## Category Tests
+
+### Test Category Creation:
+
+- Test valid category creation
+- Test category creation with missing fields
+
+### Test Category Retrieval:
+
+- Test retrieval of all categories
+- Test retrieval of single category by ID
+
+### Test Category Update:
+
+- Test valid category update
+- Test category update with missing fields
+
+### Test Category Deletion:
+
+- Test valid category deletion
+- Test deletion of non-existent category
