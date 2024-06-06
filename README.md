@@ -212,7 +212,7 @@ echo $res->getBody();
 
 --- Get All Posts --- 
    ```bash
-   [php artisan serve](http://127.0.0.1:8000/api/posts)
+   http://127.0.0.1:8000/api/posts
    ```
 
 --- Example Request as php ---
@@ -547,7 +547,7 @@ echo $res->getBody();
 
 --- Find Post By ID --- 
    ```bash
-   [php artisan serve](http://127.0.0.1:8000/api/posts/70)
+   http://127.0.0.1:8000/api/posts/70
    ```
 
 --- Example Request as php ---
@@ -588,5 +588,316 @@ echo $res->getBody();
 ```
 
 
+--- Create Post --- 
+   ```bash
+   http://127.0.0.1:8000/api/posts
+   ```
+
+--- Example Request as php ---
+   ```bash
+<?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$options = [
+  'multipart' => [
+    [
+      'name' => 'title',
+      'contents' => 'post 50'
+    ],
+    [
+      'name' => 'content',
+      'contents' => 'this is post 50'
+    ],
+    [
+      'name' => 'media',
+      'contents' => Utils::tryFopen('/F:/Downloads/Screenshot_2.png', 'r'),
+      'filename' => '/F:/Downloads/Screenshot_2.png',
+      'headers'  => [
+        'Content-Type' => '<Content-type header>'
+      ]
+    ]
+]];
+$request = new Request('POST', 'http://127.0.0.1:8000/api/posts', $headers);
+$res = $client->sendAsync($request, $options)->wait();
+echo $res->getBody();
 
 
+   ```
+
+--- Example Response ---
+
+   ```bash
+{
+  "code": 201,
+  "message": "Created successfully",
+  "data": {
+    "id": 24,
+    "title": "post 50",
+    "content": "this is post 50",
+    "media": "http://127.0.0.1:8000/PostsMedia/160613_Screenshot_2.png",
+    "created_at": "2024-06-06",
+    "author": {
+      "id": 1,
+      "name": "Omar Hesham",
+      "email": "o@o.com"
+    },
+    "category": null
+  }
+}
+   ```
+
+--- Update Post --- 
+   ```bash
+  http://127.0.0.1:8000/api/posts/1
+   ```
+
+--- Example Request as php ---
+   ```bash
+<?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$options = [
+'form_params' => [
+  'title' => 'Funny Post'
+]];
+$request = new Request('PUT', 'http://127.0.0.1:8000/api/posts/1', $headers);
+$res = $client->sendAsync($request, $options)->wait();
+echo $res->getBody();
+
+
+   ```
+
+--- Example Response ---
+
+   ```bash
+{
+  "code": 201,
+  "message": "Updated successfully",
+  "data": {
+    "id": 1,
+    "title": "Funny Post",
+    "content": "Then came a little now and then, if I must, I must,' the King put on his flappers, '--Mystery, ancient and modern, with Seaography: then Drawling--the Drawling-master was an immense length of neck.",
+    "media": "https://via.placeholder.com/640x480.png/00ffee?text=sed",
+    "created_at": "2024-06-04",
+    "author": {
+      "id": 1,
+      "name": "Omar Hesham",
+      "email": "o@o.com"
+    },
+    "category": {
+      "name": "Important Category",
+      "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+    }
+  }
+}
+   ```
+
+
+--- Delete Post --- 
+   ```bash
+   http://127.0.0.1:8000/api/posts/1
+   ```
+
+--- Example Request as php ---
+   ```bash
+<?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$request = new Request('DELETE', 'http://127.0.0.1:8000/api/posts/16', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+
+
+   ```
+
+--- Example Response ---
+
+   ```bash
+{
+  "code": 404,
+  "message": "Post not found",
+  "data": []
+}
+   ```
+
+
+--- Get All Categories --- 
+   ```bash
+   http://127.0.0.1:8000/api/categories
+   ```
+
+--- Example Request as php ---
+   ```bash
+<?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$request = new Request('GET', 'http://127.0.0.1:8000/api/categories', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+
+
+   ```
+
+--- Example Response ---
+
+   ```bash
+{
+  "message": "Fetch Categories Successfully",
+  "code": 200,
+  "data": [
+    {
+      "name": "Important Category",
+      "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+    }
+  ]
+}
+   ```
+
+
+--- Find Category By ID --- 
+   ```bash
+   http://127.0.0.1:8000/api/categories/1
+   ```
+
+--- Example Request as php ---
+   ```bash
+<?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$request = new Request('GET', 'http://127.0.0.1:8000/api/categories/1', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+
+   ```
+
+--- Example Response ---
+
+   ```bash
+{
+  "message": "Fetch Category Successfully",
+  "code": 200,
+  "data": {
+    "name": "Important Category",
+    "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+  }
+}
+   ```
+
+
+--- Create Category --- 
+   ```bash
+   http://127.0.0.1:8000/api/categories
+   ```
+
+--- Example Request as php ---
+   ```bash
+<?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$options = [
+  'multipart' => [
+    [
+      'name' => 'name',
+      'contents' => 'Category One'
+    ],
+    [
+      'name' => 'description',
+      'contents' => 'This Is Category One'
+    ]
+]];
+$request = new Request('POST', 'http://127.0.0.1:8000/api/categories', $headers);
+$res = $client->sendAsync($request, $options)->wait();
+echo $res->getBody();
+
+
+   ```
+
+--- Example Response ---
+
+   ```bash
+{
+  "code": 201,
+  "message": "Created successfully",
+  "data": {
+    "name": "Category One",
+    "description": "This Is Category One"
+  }
+}
+   ```
+
+
+--- Update Category --- 
+   ```bash
+   http://127.0.0.1:8000/api/categories
+   ```
+
+--- Example Request as php ---
+   ```bash
+<?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$options = [
+'form_params' => [
+  'name' => 'UpdatedCategory One'
+]];
+$request = new Request('PUT', 'http://127.0.0.1:8000/api/categories/1', $headers);
+$res = $client->sendAsync($request, $options)->wait();
+echo $res->getBody();
+
+   ```
+
+--- Example Response ---
+
+   ```bash
+{
+  "code": 201,
+  "message": "Updated successfully",
+  "data": {
+    "name": "UpdatedCategory One",
+    "description": "Error doloribus eaque in assumenda commodi beatae velit rerum. In itaque consectetur velit voluptatem. Earum magnam odit aut minima ut ut."
+  }
+}
+   ```
+
+
+--- Delete Category --- 
+   ```bash
+   http://127.0.0.1:8000/api/categories
+   ```
+
+--- Example Request as php ---
+   ```bash
+<?php
+$client = new Client();
+$headers = [
+  'Accept' => 'application/json'
+];
+$request = new Request('DELETE', 'http://127.0.0.1:8000/api/categories/1', $headers);
+$res = $client->sendAsync($request)->wait();
+echo $res->getBody();
+
+   ```
+
+--- Example Response ---
+
+   ```bash
+{
+  "code": 200,
+  "message": "Deleted successfully",
+  "data": []
+}
+   ```
